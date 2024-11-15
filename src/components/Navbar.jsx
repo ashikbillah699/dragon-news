@@ -41,7 +41,7 @@ const Navbar = () => {
                 <Link to='/profile' className="w-10 h-10">
                     <img src="https://img.icons8.com/?size=50&id=7819&format=png" alt="" />
                 </Link>
-                <Link to='/login' className=" bg-black py-2 px-8 font-semibold text-white">Login</Link>
+                <Link to='/auth/login' className=" bg-black py-2 px-8 font-semibold text-white">Login</Link>
             </div>
         </div>
     )
