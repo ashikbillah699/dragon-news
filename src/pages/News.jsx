@@ -3,7 +3,7 @@
 import { FaEye, FaShareAlt } from "react-icons/fa";
 
 
-// eslint-disable-next-line react/prop-types
+ 
 const News = ({ news }) => {
     console.log(news);
     return (
