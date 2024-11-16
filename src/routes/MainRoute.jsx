@@ -6,6 +6,8 @@ import Career from '../pages/Career'
 import CategoryData from '../components/CategoryData'
 import AutrhLayout from '../layouts/AutrhLayout'
 import SignUp from '../pages/SignUp'
+import NewsDetails from '../pages/NewsDetails'
+import PrivetRoute from './PrivetRoute'
 
 const router = createBrowserRouter([
     {
@@ -24,6 +26,13 @@ const router = createBrowserRouter([
             }
 
         ]
+    },
+    {
+        path: '/news/:id',
+        element:<PrivetRoute><NewsDetails></NewsDetails></PrivetRoute>,
+        loader:({params}) =>
+            fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
+
     },
     {
         path: '/auth',

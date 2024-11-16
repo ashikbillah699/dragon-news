@@ -4,6 +4,7 @@ import { AuthContext } from "../provider/AuthProvider"
 
 const Navbar = () => {
     const {user, createLogOut} = useContext(AuthContext)
+    console.log(user)
     const links = <>
         <li className="mx-1"><NavLink className={({ isActive }) => isActive ? 'bg-transparent' : 'focus:outline-none'} to='/'>Home</NavLink></li>
         <li className="mx-1"><NavLink className='focus:outline-none active:bg-transparent' to='/about'>About</NavLink></li>

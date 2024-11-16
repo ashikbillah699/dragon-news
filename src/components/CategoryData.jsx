@@ -5,7 +5,6 @@ import News from "../pages/news";
 
 const CategoryData = () => {
     const {data:allNews} = useLoaderData()
-    console.log(allNews);
     return (
         <div>
            {

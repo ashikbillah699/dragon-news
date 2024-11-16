@@ -1,22 +1,33 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import auth from "../firebase/firebase.init";
 
 
 const SignUp = () => {
-const {createNewUser,user}= useContext(AuthContext);
-console.log(user)
+    const { createNewUser, user, userProfileUpdate } = useContext(AuthContext);
+    const navigate = useNavigate();
+    console.log(user)
 
 
-    const handleSignUp =(event)=>{
+    const handleSignUp = async (event) => {
         event.preventDefault()
         const name = event.target.name.value;
         const photoUrl = event.target.photoUrl.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        console.log(name, photoUrl, email, password)
-        createNewUser(email, password)
-        
+        // console.log(name, photoUrl, email, password)
+
+        await createNewUser(email, password);
+
+        // Check if user is authenticated and wait for the user to be fully loaded
+        if (auth.currentUser) {
+            await userProfileUpdate({ displayName: name, photoURL: photoUrl });
+            navigate('/'); // Navigate after successful profile update
+        } else {
+            console.error("User is not authenticated yet");
+        }
+
     }
     return (
         <div className="flex items-center justify-center   bg-gray-100 my-10">

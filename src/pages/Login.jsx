@@ -1,16 +1,28 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 
 const Login = () => {
-    const {createLoginIn} = useContext(AuthContext);
+    const {createLoginIn,err,setErr} = useContext(AuthContext);
+    const location = useLocation()
+    console.log(location)
+    const navigate = useNavigate();
 
-    const handleLogIn = event =>{
+    const handleLogIn = async event =>{
         event.preventDefault()
         const email = event.target.email.value;
         const password = event.target.password.value;
-        createLoginIn(email, password)
+       
+        try{
+            await createLoginIn(email, password)
+            navigate(location?.state || '/');
+        }
+        catch(error){
+            setErr("Invalid email or password",error)
+        }
+
     }
     return (
         <div className="flex items-center justify-center min-h-screen  bg-gray-100">
@@ -36,7 +48,9 @@ const Login = () => {
                             placeholder="Enter your password"
                             className="input rounded-sm w-full bg-gray-100 mt-4"
                         />
+                       {err && <p className="text-red-500 mt-2">{err}</p>}
                     </div>
+
 
                     <button type="submit" className="w-full py-2 mt-4 font-semibold text-white bg-gray-800 rounded">
                         Login

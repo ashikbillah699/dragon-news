@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import { FaEye, FaShareAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
  
 const News = ({ news }) => {
-    console.log(news);
     return (
         <div className="card w-full bg-base-100 shadow-md mb-4">
             <div className="flex items-center justify-between px-4 pt-4">
@@ -24,7 +24,7 @@ const News = ({ news }) => {
             <img src={news.image_url} alt={news.title} className="w-full h-48 object-cover rounded-lg mt-4 px-4" />
             <div className="px-4 pt-4">
                 <p className="text-sm text-gray-600">{news.details}</p>
-                <button className="text-orange-500 font-semibold mt-2">Read More</button>
+                <Link to={`/news/${news._id}`} className="text-orange-500 font-semibold mt-2">Read More</Link>
             </div>
             <div className="flex items-center justify-between px-4 py-4 border-t">
                 <div className="flex items-center space-x-2">
